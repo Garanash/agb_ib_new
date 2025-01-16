@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Request, Depends, status, HTTPException
+from fastapi import APIRouter, Request, Form, Depends, status, HTTPException, Body
 from typing import Annotated
 from fastapi.templating import Jinja2Templates
 
 from src.core import db
-from src.search.metizes.schemas import MetizCreate
+from src.search.metizes.schemas import MetizCreate, MetizBase
 
 from slugify import slugify
 
@@ -16,9 +16,14 @@ import json
 LAST_SEARCH = ''
 
 
+def custom_request(request):
+    return request
+
+
 @router.post("/create")
-def create_metizes(create_item: MetizCreate, request: Request):
-    db.create_new_item(create_item)
+def create_metizes(request: Request):
+    print(request.values())
+    # db.create_new_item(create_item)
     # данные взять из формы поста
     # тут нужно запросить из базы данные
     return templates.TemplateResponse('index.html', {'request': request})
@@ -28,10 +33,13 @@ def create_metizes(create_item: MetizCreate, request: Request):
 def search_all_metizes(request: Request):
     search_item = request.query_params.get('main_input')
     LAST_SEARCH = search_item
-    search = db.search_item_by_request(search_item)
+    if search_item:
+        search = db.search_item_by_request(search_item)
+    else:
+        search = db.search_all_items()
     result_search = []
     for item in search:
-        result_search.append(MetizCreate(
+        result_search.append(MetizBase(
             id=item[0],
             number_in_catalog=item[1],
             number_in_catalog_agb=item[2],
@@ -63,7 +71,7 @@ def delete_metiz(request: Request, metiz_id: int):
     search = db.search_item_by_request(LAST_SEARCH)
     result_search = []
     for item in search:
-        result_search.append(MetizCreate(
+        result_search.append(MetizBase(
             id=item[0],
             number_in_catalog=item[1],
             number_in_catalog_agb=item[2],
@@ -89,13 +97,14 @@ def delete_metiz(request: Request, metiz_id: int):
 
 @router.get('/delete/{metiz_id}')
 def search_metiz_by_id(request: Request, metiz_id: int):
-    print(0)
     db.delete_item(metiz_id)
-    print(1)
-    search = db.search_item_by_request(LAST_SEARCH)
+    if LAST_SEARCH:
+        search = db.search_item_by_request(LAST_SEARCH)
+    else:
+        search = db.search_all_items()
     result_search = []
     for item in search:
-        result_search.append(MetizCreate(
+        result_search.append(MetizBase(
             id=item[0],
             number_in_catalog=item[1],
             number_in_catalog_agb=item[2],
@@ -116,7 +125,6 @@ def search_metiz_by_id(request: Request, metiz_id: int):
             date=item[17]
         ))
     # тут нужно запросить из базы данные
-    print(2)
     return templates.TemplateResponse('index.html', {"request": request, "metizes": result_search})
 
 
@@ -125,7 +133,7 @@ def edit_metiz(request: Request):
     # изменение записи в таблице
     pass
 
+
 @router.get('/addnew')
 def create_new_item(request: Request):
     return templates.TemplateResponse('addnew.html', {'request': request})
-

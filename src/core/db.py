@@ -80,10 +80,9 @@ def search_all_items():
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM Metizes")
     items = cursor.fetchall()
-    for item in items:
-        print(item)
     connection.commit()
     connection.close()
+    return items
 
 
 def search_item_by_index(item_id: int):
