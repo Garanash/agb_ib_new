@@ -6,12 +6,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-<!--    <link href="main.css" rel="stylesheet">-->
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>db_for_employe</title>
+    <title>Document</title>
+
 </head>
 <body>
 <header class="p-3 mb-3 border-bottom" id="header">
@@ -69,10 +69,10 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-secondary">Артикул</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Компания</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Цены</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Проект</a></li>
+                <li><a href="#" class="nav-link px-2 link-secondary">Метизы</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Проектная документация</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Классификатор</a></li>
+                <li><a href="#" class="nav-link px-2 link-body-emphasis">Покупные гидроперфоратор</a></li>
             </ul>
 
             <div class="dropdown text-end">
@@ -93,22 +93,11 @@
         </div>
     </div>
 </header>
-<div class="container" id="search">
-    <div class="wrapper">
-        <h1 class="page-header text-center" style="margin-top: 200px;">
-            Поиск номенклатуры
-        </h1>
-    </div>
-    <br><br>
-    <div class="wrapper">
-        <form action="/metizes/search" method="GET" class="input-group mb-3" style="width:100%; margin-bottom: 200px;">
-            <input id="main_input" name="main_input" type="text" class="form-control" placeholder="Введите название или артикул"
-                   aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Поиск</button>
-        </form>
-    </div>
-</div>
-<br><br><br><br><br><br><br><br>
+
+{% block content %}
+
+{% endblock content %}
+
 <div class="container" id="footer">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
@@ -139,5 +128,12 @@
         </ul>
     </footer>
 </div>
+
+
 </body>
+<style>
+    body{
+    background-color: #D3D3D3;
+    }
+</style>
 </html>
