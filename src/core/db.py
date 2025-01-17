@@ -156,3 +156,31 @@ def delete_item(item_id: int):
 #     applicability='178978978344',
 #     date='1278978978'
 # )
+
+# with open("test.txt", 'r', encoding="UTF-8") as file:
+#     for line in file.readlines():
+#         item = line.strip().split("\t")
+#         for i in range(len(item)):
+#             if item[i] == '':
+#                 item[i] = '-'
+#         print(item)
+        # result_item = MetizCreate(
+        #     number_in_catalog=item[0],
+        #     number_in_catalog_agb=item[1],
+        #     name_in_catalog=item[2],
+        #     name_in_kd=item[3],
+        #     name_in_catalog_agb=item[4],
+        #     standard=item[5],
+        #     type=item[6],
+        #     profile=item[7],
+        #     diameter_nominal=item[8],
+        #     step=item[9],
+        #     length=item[10],
+        #     accuracy=item[11],
+        #     material_or_coverage=item[12],
+        #     assigned=item[13],
+        #     note=item[14],
+        #     applicability=item[15],
+        #     date=item[16]
+        # )
+        # print(result_item)
