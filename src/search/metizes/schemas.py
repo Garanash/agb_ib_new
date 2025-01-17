@@ -23,6 +23,7 @@ class MetizBase(BaseModel):
 
 
 class MetizCreate(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
     number_in_catalog: str
     number_in_catalog_agb: str
     name_in_catalog: str

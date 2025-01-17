@@ -110,8 +110,8 @@
                 </div>
                 <div class="col">
                     <label>Дата</label>
-                    <input type="text" name="date" placeholder="date"
-                           class="form-control"/>
+                    <input type="datetime-local" name="date" placeholder="date"
+                           class="form-control" value="{{ current_datetime }}" disabled/>
                 </div>
             </div>
         </div>
@@ -119,7 +119,6 @@
         <div class="container">
             <button class="btn btn-primary" style="width: 400px">Создать</button>
         </div>
-
     </form>
 </div>
 

@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 from src.core import db
 from src.search.metizes.schemas import MetizCreate, MetizBase
 
+from datetime import datetime
 from slugify import slugify
 
 templates = Jinja2Templates(directory='templates')
@@ -21,9 +22,9 @@ def custom_request(request):
 
 
 @router.post("/create")
-def create_metizes(request: Request):
-    print(request.values())
-    # db.create_new_item(create_item)
+def create_metizes( create_item: Annotated[MetizCreate, Form()], request: Request):
+    print(create_item)
+    db.create_new_item(create_item)
     # данные взять из формы поста
     # тут нужно запросить из базы данные
     return templates.TemplateResponse('index.html', {'request': request})
@@ -136,4 +137,5 @@ def edit_metiz(request: Request):
 
 @router.get('/addnew')
 def create_new_item(request: Request):
-    return templates.TemplateResponse('addnew.html', {'request': request})
+    current_date_time = datetime.now().strftime("%Y-%m-%dT%H:%M")
+    return templates.TemplateResponse('addnew.html', {'request': request, 'current_datetime': current_date_time})
