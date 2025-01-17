@@ -22,6 +22,8 @@ class MetizBase(BaseModel):
     date: str
 
 
+
+
 class MetizCreate(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     number_in_catalog: str

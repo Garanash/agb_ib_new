@@ -137,7 +137,6 @@ def delete_item(item_id: int):
     connection.commit()
     connection.close()
 
-
 # new_item = MetizCreate(
 #     number_in_catalog='234',
 #     number_in_catalog_agb='56347',
