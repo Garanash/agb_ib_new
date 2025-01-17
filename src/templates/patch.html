@@ -51,7 +51,7 @@
                 <div class="col">
                     <label>Тип</label>
                     <select class="form-select" aria-label="Default select example" id="type" name="type" typeof="text">
-                        <option value="{{ item.type }}">-- Выберите тип --</option>
+                        <option value="{{ item.type }}" selected>{{ item.type }}</option>
                         <option value="bolt">Болт</option>
                         <option value="samorez">Саморез</option>
                         <option value="gvozd">Гвоздь</option>
@@ -64,7 +64,7 @@
                     <label>Профиль</label>
                     <select class="form-select" aria-label="Default select example" id="profile" name="profile"
                             typeof="text">
-                        <option value="{{ item.profile }}">-- Выберите профиль --</option>
+                        <option value="{{ item.profile }}" selected> {{ item.profile }}</option>
                         <option value="UNC">UNC</option>
                         <option value="M">M</option>
                         <option value="ПСВ.711141.001">ПСВ.711141.001</option>
