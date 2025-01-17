@@ -23,7 +23,10 @@ def custom_request(request):
 def create_metizes(create_item: Annotated[MetizCreate, Form()], request: Request):
     print(LAST_SEARCH)
     db.create_new_item(create_item)
-    search = db.search_item_by_request(LAST_SEARCH)
+    if LAST_SEARCH:
+        search = db.search_item_by_request(LAST_SEARCH)
+    else:
+        search = db.search_all_items()
     result_search = []
     for item in search:
         result_search.append(MetizBase(
@@ -55,7 +58,10 @@ def patch_metizes(patch_item: Annotated[MetizBase, Form()], request: Request):
     print(patch_item)
     for key, val in patch_item.__dict__.items():
         db.update_item(patch_item.id, key, val)
-    search = db.search_item_by_request(LAST_SEARCH)
+    if LAST_SEARCH:
+        search = db.search_item_by_request(LAST_SEARCH)
+    else:
+        search = db.search_all_items()
     result_search = []
     for item in search:
         result_search.append(MetizBase(
