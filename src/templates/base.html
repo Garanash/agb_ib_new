@@ -105,7 +105,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="/autorize_me" method="POST">
+                            <form action="/auth/autorize_me" method="POST">
                                 <div class="container">
                                     <label> Введите имя пользователя</label>
                                     <br>
@@ -116,12 +116,14 @@
                                     <br>
                                     <input type="password" name="password" placeholder="password">
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть
+                                    </button>
+                                    <button type="submit" class="btn btn-primary">Отправить</button>
+                                </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                            <button type="submit" class="btn btn-primary">Отправить</button>
-                        </div>
+
                     </div>
                 </div>
             </div>
