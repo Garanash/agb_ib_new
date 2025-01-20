@@ -7,14 +7,4 @@ class UserBase(BaseModel):
     mail : str
     role : str
     firstname : str
-    lastname
-    TEXT
-    NULL,
-    isactive
-    BOOL
-    DEFAULT
-    FALSE,
-    superuser
-    BOOL
-    DEFAULT
-    FALSE,
+    lastname : str

@@ -1,6 +1,6 @@
 import sqlite3
-from src.search.metizes.schemas import MetizCreate
-import pandas as pd
+from search.metizes.schemas import MetizCreate
+# import pandas as pd
 
 
 def create_table_metizes() -> None:

@@ -1,12 +1,14 @@
 FROM python:latest
 
-ADD main.py /app/
-ADD database.db /app/
-COPY /core /app/core
-COPY /models /app/models
-COPY /search /app/search
-COPY /templates /app/templates
-ADD requirements.txt /app/
-RUN pip install -r app/requirements.txt
+ADD main.py /src/
+ADD __init__.py /src/
+ADD database.db /src/
+COPY /core /src/core
+COPY /models /src/models
+COPY /search /src/search
+COPY /templates /src/templates
+COPY /auth /src/auth
+ADD requirements.txt /src/
+RUN pip install -r src/requirements.txt
 
-WORKDIR /app/
+WORKDIR /src/

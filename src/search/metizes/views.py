@@ -2,8 +2,8 @@ from fastapi import APIRouter, Request, Form, Depends, status, HTTPException, Bo
 from typing import Annotated
 from fastapi.templating import Jinja2Templates
 
-from src.core import db
-from src.search.metizes.schemas import MetizCreate, MetizBase
+from core import db
+from search.metizes.schemas import MetizCreate, MetizBase
 
 from datetime import datetime
 from slugify import slugify
