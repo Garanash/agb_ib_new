@@ -1,5 +1,6 @@
 import sqlite3
 from src.search.metizes.schemas import MetizCreate
+import pandas as pd
 
 
 def create_table_metizes() -> None:
@@ -29,7 +30,7 @@ def create_table_metizes() -> None:
     connection.close()
 
 
-def create_new_item(item: MetizCreate):
+def create_new_item(item: MetizCreate) -> None:
     print(item.number_in_catalog_agb)
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
@@ -101,7 +102,7 @@ def search_item_by_request(request: str):
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
     result_search = set()
-    request = "%"+request+'%'
+    request = "%" + request + '%'
     for elem in (
             "number_in_catalog", "number_in_catalog_agb", "name_in_catalog", "name_in_kd", "name_in_catalog_agb",
             "standard", "type", "profile", "diameter_nominal", "step", "length", "accuracy", "material_or_coverage",
@@ -138,6 +139,7 @@ def delete_item(item_id: int):
     connection.commit()
     connection.close()
 
+
 # new_item = MetizCreate(
 #     number_in_catalog='234',
 #     number_in_catalog_agb='56347',
@@ -158,30 +160,57 @@ def delete_item(item_id: int):
 #     date='1278978978'
 # )
 
-# with open("test.txt", 'r', encoding="UTF-8") as file:
-#     for line in file.readlines():
-#         item = line.strip().split("\t")
-#         for i in range(len(item)):
-#             if item[i] == '':
-#                 item[i] = '-'
-#         print(item)
-        # result_item = MetizCreate(
-        #     number_in_catalog=item[0],
-        #     number_in_catalog_agb=item[1],
-        #     name_in_catalog=item[2],
-        #     name_in_kd=item[3],
-        #     name_in_catalog_agb=item[4],
-        #     standard=item[5],
-        #     type=item[6],
-        #     profile=item[7],
-        #     diameter_nominal=item[8],
-        #     step=item[9],
-        #     length=item[10],
-        #     accuracy=item[11],
-        #     material_or_coverage=item[12],
-        #     assigned=item[13],
-        #     note=item[14],
-        #     applicability=item[15],
-        #     date=item[16]
-        # )
-        # print(result_item)
+def assert_data():
+    df = pd.read_excel('data_test.xlsx')
+    result_list = []
+    for _, row in df.iterrows():
+        processed_row = []
+        for column in df.columns:
+            value = row[column]
+            if value is None or pd.isna(value):
+                processed_row.append('-')
+            else:
+                processed_row.append(str(value))
+        result_list.append(processed_row)
+    for item in result_list:
+        result_item = MetizCreate(
+            number_in_catalog=item[0],
+            number_in_catalog_agb=item[1],
+            name_in_catalog=item[2],
+            name_in_kd=item[3],
+            name_in_catalog_agb=item[4],
+            standard=item[5],
+            type=item[6],
+            profile=item[7],
+            diameter_nominal=item[8],
+            step=item[9],
+            length=item[10],
+            accuracy=item[11],
+            material_or_coverage=item[12],
+            assigned=item[13],
+            note=item[14],
+            applicability=item[15],
+            date=item[16])
+        create_new_item(result_item)
+
+    # for item in items_list:
+    #     if item:
+    #         result_item = MetizCreate(
+    #         number_in_catalog=item[0],
+    #         number_in_catalog_agb=item[1],
+    #         name_in_catalog=item[2],
+    #         name_in_kd=item[3],
+    #         name_in_catalog_agb=item[4],
+    #         standard=item[5],
+    #         type=item[6],
+    #         profile=item[7],
+    #         diameter_nominal=item[8],
+    #         step=item[9],
+    #         length=item[10],
+    #         accuracy=item[11],
+    #         material_or_coverage=item[12],
+    #         assigned=item[13],
+    #         note=item[14],
+    #         applicability=item[15],
+    #         date=item[16])
+    #         create_new_item(result_item)

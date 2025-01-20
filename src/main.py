@@ -17,4 +17,5 @@ def main(request: Request):
 
 if __name__ == '__main__':
     db.create_table_metizes()
+    # db.assert_data()
     uvicorn.run('main:app', port=6789, reload=True)
