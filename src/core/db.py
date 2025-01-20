@@ -101,6 +101,7 @@ def search_item_by_request(request: str):
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
     result_search = set()
+    request = "%"+request+'%'
     for elem in (
             "number_in_catalog", "number_in_catalog_agb", "name_in_catalog", "name_in_kd", "name_in_catalog_agb",
             "standard", "type", "profile", "diameter_nominal", "step", "length", "accuracy", "material_or_coverage",
