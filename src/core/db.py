@@ -108,7 +108,7 @@ def search_item_by_request(request: str):
             "assigned", "note", "applicability", "date"):
         cursor.execute(f"""
     SELECT * FROM Metizes
-    WHERE {elem} LIKE ?;
+    WHERE LOWER({elem}) LIKE LOWER(?);
     """, (request,))
         result = cursor.fetchall()
         for res in result:
