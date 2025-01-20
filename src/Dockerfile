@@ -1,8 +1,6 @@
 FROM python:latest
 
 COPY . /src
-RUN pip install -r src/requirements.txt
-
 WORKDIR /src/
 
-CMD ["python", "main.py"]
+RUN pip install --no-cache-dir -r requirements.txt

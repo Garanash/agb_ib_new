@@ -1,8 +1,8 @@
 services:
   app:
     build: src/
-    command: python ./main.py
+    command: python3 main.py
     ports:
-      - "6785:6785"
+      - "8000:8000"
     restart: unless-stopped
 
