@@ -3,6 +3,7 @@ services:
     build: src/
     command: python3 main.py
     ports:
-      - "8000:8000"
+      - "80:80"
+      - "443:443"
     restart: unless-stopped
 

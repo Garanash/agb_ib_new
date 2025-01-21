@@ -20,4 +20,4 @@ def main(request: Request):
 if __name__ == '__main__':
     db.create_table_metizes()
     # db.assert_data()
-    uvicorn.run('main:app', port=8000, host='0.0.0.0')
+    uvicorn.run('main:app', port=80, host='0.0.0.0')
