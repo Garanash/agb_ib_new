@@ -1,10 +1,6 @@
 from pydantic import BaseModel, ConfigDict
 
 
-class UserBase(BaseModel):
-    id: int
+class UserLogin(BaseModel):
     username: str
-    mail : str
-    role : str
-    firstname : str
-    lastname : str
+    password: str

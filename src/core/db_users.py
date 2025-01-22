@@ -5,7 +5,7 @@ def create_table_users():
     connection = sqlite3.connect("database.db")
     cursor = connection.cursor()
     cursor.execute("""
-        CREATE TABLE IF NOT EXISTS Users(
+        CREATE TABLE IF NOT EXISTS users(
         id INTEGER PRIMARY KEY,
         username TEXT UNIQUE,
         password TEXT,
@@ -23,7 +23,7 @@ def create_table_users():
 def search_user_by_username(username: str) -> tuple[str]:
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM Users WHERE username = ?", (username,))
+    cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
     user = cursor.fetchone()
     connection.commit()
     connection.close()
@@ -33,7 +33,7 @@ def search_user_by_username(username: str) -> tuple[str]:
 def search_user_by_id(user_id: int) -> tuple[str]:
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM Users WHERE id = ?", (user_id,))
+    cursor.execute("SELECT * FROM users WHERE id = ?", (user_id,))
     user = cursor.fetchone()
     connection.commit()
     connection.close()
@@ -43,7 +43,7 @@ def search_user_by_id(user_id: int) -> tuple[str]:
 def search_password_by_username(username: str) -> str:
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
-    cursor.execute("SELECT password FROM Users WHERE username = ?", (username,))
+    cursor.execute("SELECT password FROM users WHERE username = ?", (username,))
     user_password = cursor.fetchone()
     connection.commit()
     connection.close()
@@ -54,7 +54,7 @@ def create_user(obj):
     connection = sqlite3.connect('database.db')
     cursor = connection.cursor()
     cursor.execute("""
-            INSERT INTO Users (
+            INSERT INTO users (
             username,password,mail,role,firstname,lastname,isactive,superuser)
             ) VALUES (?,?,?,?,?,?,?,?)
             """, (
