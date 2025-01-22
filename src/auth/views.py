@@ -21,8 +21,9 @@ def basic_auth(
         response: Response
 ):
     user = search_user_by_username(credentials.username)
-    if user:
-        user[0][]
-
+    """
+    ДОПИСАТЬ АВТОРИЗАЦИЮ
+    """
+    ...
     response.set_cookie()
     return f'hello {credentials.username}'

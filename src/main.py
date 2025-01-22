@@ -1,13 +1,17 @@
+from contextlib import asynccontextmanager
+
 import uvicorn
 from fastapi import FastAPI, Request, Form, Path
 from fastapi.templating import Jinja2Templates
+
 from search.metizes.views import router as router_metiz
 from auth.views import router as auth_router
 from core import db
+from lifespan import lifespan
 
 templates = Jinja2Templates(directory="templates")  # регистрируем папку как папку с шаблонами джинджа
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 app.include_router(router_metiz)
 app.include_router(auth_router)
 
